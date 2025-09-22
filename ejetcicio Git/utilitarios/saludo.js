@@ -21,13 +21,13 @@ recuperarTexto=function(idComponente){
 recuperarInt=function(idComponente){
 
     let compEntero=recuperarTexto(idComponente)
-    let valorCaja=parseInt(compEntero.value)
+    let valorCaja=parseInt(compEntero)
     return valorCaja
 }
 
 recuperarFloat=function(idComponente){
 
     let compFloat=recuperarTexto(idComponente)
-    let valorCaja=parseInt(compFloat.value)
+    let valorCaja=parseInt(compFloat)
     return valorCaja
 }
