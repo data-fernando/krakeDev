@@ -28,6 +28,6 @@ recuperarInt=function(idComponente){
 recuperarFloat=function(idComponente){
 
     let compFloat=recuperarTexto(idComponente)
-    let valorCaja=parseInt(compFloat)
+    let valorCaja=parseFloat(compFloat)
     return valorCaja
 }
