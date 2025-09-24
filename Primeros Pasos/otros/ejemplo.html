@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Kalamidath gótico con rosa y calavera</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      display: flex;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+    }
+    canvas {
+      border: none;
+    }
+  </style>
+</head>
+<body>
+<canvas id="canvas" width="1200" height="350"></canvas>
+<script>
+const c = document.getElementById('canvas');
+const ctx = c.getContext('2d');
+
+// Parámetros
+const letterHeight = 100;
+const letterWidth  = 60;
+const spacing      = 20;
+const baseline     = 220;
+const roseWidth    = letterHeight;
+const skullWidth   = letterHeight;
+
+ctx.lineWidth   = 8;
+ctx.strokeStyle = '#fff';
+ctx.fillStyle   = '#fff';
+
+// Posición inicial
+let x = 30;
+drawRose(x);
+x += roseWidth;
+
+// Tallo horizontal detrás del texto
+const stemY = baseline - letterHeight/4;
+ctx.beginPath();
+ctx.moveTo(x, stemY);
+ctx.lineTo(1100, stemY);
+ctx.stroke();
+
+
+// Letras
+x += spacing;
+drawK(x); x += letterWidth + spacing;
+drawA(x); x += letterWidth + spacing;
+drawL(x); x += letterWidth + spacing;
+drawA(x); x += letterWidth + spacing;
+drawM(x); x += letterWidth + spacing;
+drawI(x); x += letterWidth + spacing;
+drawD(x); x += letterWidth + spacing;
+drawA(x); x += letterWidth + spacing;
+drawT(x); x += letterWidth + spacing;
+drawH(x); x += letterWidth + spacing;
+
+
+
+// Calavera final
+
+drawSkull(x);
+
+
+
+function drawRose(x) {
+  const cx     = x + roseWidth / 2;
+  const cy     = baseline - letterHeight / 2;
+  const budR   = roseWidth / 6;
+  const petalR = roseWidth / 4;
+
+  ctx.beginPath();
+  ctx.arc(cx, cy, budR, 0, Math.PI * 2);
+  ctx.stroke();
+
+  for (let i = 0; i < 6; i++) {
+    const ang = i * Math.PI * 2 / 6;
+    const px  = cx + Math.cos(ang) * petalR;
+    const py  = cy + Math.sin(ang) * petalR;
+    ctx.beginPath();
+    ctx.arc(px, py, petalR, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+
+  // Tallo vertical
+  ctx.beginPath();
+  ctx.moveTo(cx, cy + petalR);
+  ctx.lineTo(cy, + 195);
+  ctx.stroke();
+}
+
+function drawSkull(x) {
+  const headW    = skullWidth * 1.4;
+  const headH    = skullWidth * 0.9;
+  const cx       = x + headW / 2;
+  const cy       = baseline - headH * 0.7;
+  const jawW     = skullWidth * 0.65;
+  const jawH     = skullWidth * 0.38;
+  const jawX     = cx - jawW / 2;
+  const jawY     = cy + headH / 3;
+  const eyeR     = skullWidth * 0.18;
+  const eyeOffX  = skullWidth * 0.35;
+  const eyeY     = cy - headH * 0.15;
+
+
+
+  // Cráneo
+  ctx.beginPath();
+  ctx.ellipse(cx, cy, headW / 2, headH / 2, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
+
+  // Mandíbula
+  ctx.fillRect(jawX, jawY, jawW, jawH);
+  ctx.strokeRect(jawX, jawY, jawW, jawH);
+
+  // Ojos
+  ctx.fillStyle = '#000';
+  ctx.beginPath();
+  ctx.ellipse(cx - eyeOffX, eyeY, eyeR, eyeR, 0, 0, Math.PI * 2);
+  ctx.ellipse(cx + eyeOffX, eyeY, eyeR, eyeR, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+
+
+  // Nariz (triángulo invertido)
+  ctx.beginPath();
+  ctx.moveTo(cx, cy); // vértice superior
+  ctx.lineTo(cx - skullWidth * 0.10, cy + skullWidth * 0.20);
+  ctx.lineTo(cx + skullWidth * 0.10, cy + skullWidth * 0.20);
+  ctx.closePath();
+  ctx.fill();
+
+  // Boca: línea superior de encías
+  const mouthTopY = jawY + jawH * 0.4;
+  ctx.strokeStyle = '#000';
+  ctx.beginPath();
+  ctx.moveTo(jawX + 5, mouthTopY);
+  ctx.lineTo(jawX + jawW - 5, mouthTopY);
+  ctx.stroke();
+
+  // Dientes verticales
+  const teethCount = 6;
+  const gap = jawW / teethCount;
+  for (let i = 1; i < teethCount; i++) {
+    const tx = jawX + gap * i;
+    ctx.beginPath();
+    ctx.moveTo(tx, mouthTopY);
+    ctx.lineTo(tx, jawY + jawH - 5);
+    ctx.stroke();
+  }
+
+  // Restaurar estilos
+  ctx.strokeStyle = '#fff';
+  ctx.fillStyle = '#fff';
+}
+
+
+function drawK(x) {
+  const top = baseline - letterHeight;
+  const mid = baseline - letterHeight / 2;
+  ctx.beginPath();
+  ctx.moveTo(x, baseline);
+  ctx.lineTo(x, top);
+  ctx.moveTo(x, mid);
+  ctx.lineTo(x + letterWidth, top);
+  ctx.moveTo(x, mid);
+  ctx.lineTo(x + letterWidth, baseline);
+  ctx.stroke();
+}
+
+function drawA(x) {
+  const top = baseline - letterHeight;
+  ctx.beginPath();
+  ctx.moveTo(x, baseline);
+  ctx.lineTo(x + letterWidth / 2, top);
+  ctx.lineTo(x + letterWidth, baseline);
+  ctx.moveTo(x + letterWidth * 0.2, baseline - letterHeight / 2);
+  ctx.lineTo(x + letterWidth * 0.8, baseline - letterHeight / 2);
+  ctx.stroke();
+}
+
+function drawL(x) {
+  const top = baseline - letterHeight;
+  ctx.beginPath();
+  ctx.moveTo(x, top);
+  ctx.lineTo(x, baseline);
+  ctx.lineTo(x + letterWidth, baseline);
+  ctx.stroke();
+}
+
+function drawM(x) {
+  const top = baseline - letterHeight;
+  ctx.beginPath();
+  ctx.moveTo(x, baseline);
+  ctx.lineTo(x, top);
+  ctx.lineTo(x + letterWidth / 2, baseline - letterHeight / 2);
+  ctx.lineTo(x + letterWidth, top);
+  ctx.lineTo(x + letterWidth, baseline);
+  ctx.stroke();
+}
+
+function drawI(x) {
+  const top = baseline - letterHeight;
+  ctx.beginPath();
+  ctx.moveTo(x, top);
+  ctx.lineTo(x + letterWidth, top);
+  ctx.moveTo(x + letterWidth / 2, top);
+  ctx.lineTo(x + letterWidth / 2, baseline);
+  ctx.moveTo(x, baseline);
+  ctx.lineTo(x + letterWidth, baseline);
+  ctx.stroke();
+}
+
+function drawD(x) {
+  const top = baseline - letterHeight;
+  ctx.beginPath();
+  ctx.moveTo(x, baseline);
+  ctx.lineTo(x, top);
+  ctx.arc(
+    x + letterWidth / 2,
+    top + letterHeight / 2,
+    letterHeight / 2,
+    -Math.PI / 2,
+    Math.PI / 2
+    
+  );
+  
+  ctx.stroke();
+}
+
+function drawT(x) {
+  const top = baseline - letterHeight;
+  ctx.beginPath();
+  ctx.moveTo(x, top);
+  ctx.lineTo(x + letterWidth, top);
+  ctx.moveTo(x + letterWidth / 2, top);
+  ctx.lineTo(x + letterWidth / 2, baseline);
+  ctx.stroke();
+}
+
+function drawH(x) {
+  const top = baseline - letterHeight;
+  ctx.beginPath();
+  ctx.moveTo(x, baseline);
+  ctx.lineTo(x, top);
+  ctx.moveTo(x + letterWidth, baseline);
+  ctx.lineTo(x + letterWidth, top);
+  ctx.moveTo(x, top + letterHeight / 2);
+  ctx.lineTo(x + letterWidth, top + letterHeight / 2);
+  ctx.stroke();
+
+}
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
