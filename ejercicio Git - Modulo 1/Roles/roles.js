@@ -68,6 +68,10 @@ mostarEmpleados=function(){
 
 ejecutarNuevo=function(){
 
+    
+
+    // si es nuevo == true
+
     habilitarComponente("txtCedula")
     habilitarComponente("txtNombre")
     habilitarComponente("txtApellido")
@@ -107,7 +111,9 @@ agregarEmpleado=function(empleado){
         empleados.push(empleado)
         existeEmpleado=true
     }else {
-        alert("ya esxite el empleado con esa cedula")
+        alert("ya esxite el empleado con esa cedula: "+empleadoA_Agregar.cedula)
+        
+
     }
 
     return existeEmpleado
@@ -287,14 +293,30 @@ guardar=function(){
     let valorApellido=recuperarTexto("txtApellido")//lblErrorApellido
     let valorSueldo=recuperarFloat("txtSueldo")//lblErrorSueldo
 
-
+   
     
-    if(validarCedula(valorCedula) &  validarNombreO_Apellido(valorNombre) & validarNombreO_Apellido(valorApellido) & validarFloat(valorSueldo) ){
+    if (validarCedula(valorCedula) & validarNombreO_Apellido(valorNombre) & validarNombreO_Apellido(valorApellido) & validarFloat(valorSueldo)) {
 
         console.log("EJECUTADO VALORES CORRECTOS")
 
+        let nuevoEmpleado = {
+            cedula: valorCedula,
+            nombre: valorNombre,
+            apellido: valorApellido,
+            sueldo: valorSueldo
+        }
 
+        let empleadoAgregado=agregarEmpleado(nuevoEmpleado)
 
+        if(empleadoAgregado==true){
+            alert("EmpleadoGuardado Correctamente");
+            
+        }
+
+        mostrarOpcionEmpleado();
+    
     }
 
+
 }
+
