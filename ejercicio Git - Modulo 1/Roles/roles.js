@@ -80,3 +80,217 @@ ejecutarNuevo=function(){
 
 }
 
+
+
+buscarEmpleado=function(cedula){
+    let elementoEmpleado
+    let elementoEncontrado=null
+
+    for(let i=0;i<empleados.length;i++){
+        elementoEmpleado=empleados[i]
+
+        if(elementoEmpleado.cedula==cedula){
+            elementoEncontrado=elementoEmpleado
+            break;
+        }
+
+    }
+    return elementoEncontrado
+}
+
+
+agregarEmpleado=function(empleado){
+    let empleadoA_Agregar=buscarEmpleado(empleado.cedula)
+    let existeEmpleado=false
+
+    if(empleadoA_Agregar==null){
+        empleados.push(empleado)
+        existeEmpleado=true
+    }else {
+        alert("ya esxite el empleado con esa cedula")
+    }
+
+    return existeEmpleado
+
+
+}
+
+
+//validaciones para funcion guardar
+//validacion es digito
+esDigito = function (caracter) {
+    let cumpleCondicion = false
+    let rangoInferior = 48; ///codigo ascci
+    let rangoSuperior = 57; ///codigo ascci
+    let char = caracter.charCodeAt(0)
+
+    if (char <= rangoSuperior && char >= rangoInferior) {
+        cumpleCondicion = true
+    }
+    console.log(caracter + " cumple esDigito: " + cumpleCondicion)
+    return cumpleCondicion
+
+}
+
+validarCedula=function(cadenaCedula){
+
+    let longitudCadena = cadenaCedula.length
+    let condicionCumple = false
+    let mensajeErrorCedula=""
+    
+
+    // verifica tamanio de 10
+    if(longitudCadena==10){
+
+
+        for(let i=0;i<longitudCadena;i++){
+            let charActual=cadenaCedula[i]
+            let condicionActual=esDigito(charActual)
+
+            if(condicionActual==true){
+                if(i==0){
+                    condicionCumple=true
+                }
+            }
+
+            console.log("char actual es: '"+charActual+"' condicion "+condicionCumple)
+                /// AL menos uno o todos
+
+            condicionCumple=condicionCumple&&condicionActual
+
+        }
+
+        if (condicionCumple == false) {
+            mensajeErrorCedula = "No cumple condicion de todos deben ser digitos"
+        }
+
+        
+        
+    }else{
+        mensajeErrorCedula="Numero de digitos en cedula debe ser de 10"
+    }
+
+    console.log("\nCONDICION GENERAL DE CEDULA ES: "+condicionCumple+"\n")
+    
+    mostrarTexto("lblErrorCedula",mensajeErrorCedula)
+    
+
+    return condicionCumple
+
+}
+
+
+esMayuscula = function (caracter) {
+    let cumpleCondicion = false
+    let rangoInferior = 65;///codigo ascci
+    let rangoSuperior = 90;///codigo ascci
+    let char = caracter.charCodeAt(0)
+
+    if (char <= rangoSuperior && char >= rangoInferior) {
+        cumpleCondicion = true
+    }
+    console.log(caracter + " cumple esMayuscula: " + cumpleCondicion)
+    return cumpleCondicion
+}
+
+validarNombreO_Apellido = function (cadenaNombreApellido) {
+
+    let longitudCadena = cadenaNombreApellido.length
+    let condicionCumple = false
+    let mensajeErrorCadena = ""
+
+
+    // verifica tamanio de 3
+    if (longitudCadena >= 3) {
+
+
+        for (let i = 0; i < longitudCadena; i++) {
+            let charActual = cadenaNombreApellido[i]
+            let condicionActual = esMayuscula(charActual)
+
+            if (condicionActual == true) {
+                if (i == 0) {
+                    condicionCumple = true
+                }
+            }
+
+            console.log("char actual es: '" + charActual + "' condicion " + condicionCumple)
+            /// AL menos uno o todos
+
+            condicionCumple = condicionCumple && condicionActual
+
+        }
+
+        if (condicionCumple == false) {
+            mensajeErrorCadena = "No cumple condicion de todos deben ser Mayusculas"
+
+        }
+
+    } else {
+        mensajeErrorCadena = "Numero caracteres en este campo debe ser mayor a 3"
+    }
+
+
+    console.log(mensajeErrorCadena)
+    // mostrarTexto("lblErrorCedula", mensajeErrorCedula)
+    
+    let valorNombre_local=recuperarTexto("txtNombre");//lblErrorNombre
+    let valorApellido_local=recuperarTexto("txtApellido")//lblErrorApellido
+
+    if(cadenaNombreApellido=valorNombre_local){
+        mostrarTexto("lblErrorNombre", mensajeErrorCadena)
+    }
+    if(cadenaNombreApellido=valorApellido_local){
+        mostrarTexto("lblErrorNombre", mensajeErrorCadena)
+    }
+
+    console.log("\nCONDICION GENERAL DE CADENA "+ cadenaNombreApellido +" ES: "+condicionCumple+"\n")
+
+
+    return condicionCumple
+
+}
+
+validarFloat=function(valorFlotante){
+    let valorA_Validar=valorFlotante
+    let condicionCumple = false
+    let mensajeErrorFloat=""
+     if(valorA_Validar>400 && valorA_Validar<5000){
+        condicionCumple=true
+     }else{
+        mensajeErrorFloat="valor debe ser entre 400 y 5000"
+     }
+    mostrarTexto("lblErrorSueldo",mensajeErrorFloat)
+
+    console.log("\nCONDICION GENERAL DE SUELDO ES: "+condicionCumple+"\n")
+    
+    return condicionCumple
+
+    
+
+}
+
+
+
+guardar=function(){
+    let valorCedula=recuperarTexto("txtCedula");//lblErrorCedula
+    let valorNombre=recuperarTexto("txtNombre");//lblErrorNombre
+    let valorApellido=recuperarTexto("txtApellido")//lblErrorApellido
+    let valorSueldo=recuperarFloat("txtSueldo")//lblErrorSueldo
+
+
+    ///error en cadena nombre
+
+
+    //error en cadena apellido
+
+    
+    if(validarCedula(valorCedula) &  validarNombreO_Apellido(valorNombre) & validarNombreO_Apellido(valorApellido) & validarFloat(valorSueldo) ){
+
+        console.log("EJECUTADO VALORES CORRECTOS")
+
+
+
+    }
+
+}

@@ -50,7 +50,7 @@ guardarPalabra = function () {
                 }
 
                 console.log("char actual es: '"+charActual+"' condicion "+condicionCumple)
-
+                /// AL menos uno o todos
                 condicionCumple=condicionCumple&&condicionActual
             }
             console.log("Cumple condicion general: "+condicionActual)
