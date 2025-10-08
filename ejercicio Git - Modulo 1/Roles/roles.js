@@ -241,7 +241,7 @@ validarNombreO_Apellido = function (cadenaNombreApellido) {
         mostrarTexto("lblErrorNombre", mensajeErrorCadena)
     }
     if(cadenaNombreApellido=valorApellido_local){
-        mostrarTexto("lblErrorNombre", mensajeErrorCadena)
+        mostrarTexto("lblErrorApellido", mensajeErrorCadena)
     }
 
     console.log("\nCONDICION GENERAL DE CADENA "+ cadenaNombreApellido +" ES: "+condicionCumple+"\n")
