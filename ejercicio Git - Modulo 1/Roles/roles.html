@@ -3,12 +3,13 @@
 
 <head>
     <script src="roles.js"></script>
+    <script src="rolesRol.js"></script>
     <script src="utilitarios.js"></script>
     <link rel="stylesheet" href="roles.css">
 
 </head>
 
-<body onload="mostrarOpcionEmpleado()">
+<body onload="mostrarOpcionRol()">
 
     <!-- Parte 1 -->
     <div class="menu">
@@ -114,7 +115,7 @@
                     </div>
                 </div>
                 <div class="contenedorBoton">
-                    <input type="button" value="BUSCAR" class="estiloBoton" />
+                    <input type="button" value="BUSCAR" class="estiloBoton" onclick="buscarPorRol()" />
                 </div>
             </div>
 
@@ -154,7 +155,7 @@
                 </div>
                 <div class="botones">
                     <div class="contenedorBoton">
-                        <input type="button" value="CALCULAR" class="estiloBoton" />
+                        <input type="button" value="CALCULAR" class="estiloBoton" onclick="calcularRol()" />
                     </div>
                 </div>
                 <div class="ingresoDatos">

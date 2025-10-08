@@ -395,3 +395,4 @@ limpiar =function(){
     mostrarTextoEnCaja("txtSueldo", cadenaVacia)
     mostrarOpcionEmpleado()
 }
+
