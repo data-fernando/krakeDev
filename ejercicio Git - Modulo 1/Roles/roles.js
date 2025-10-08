@@ -212,12 +212,17 @@ validarNombreO_Apellido = function (cadenaNombreApellido) {
                 if (i == 0) {
                     condicionCumple = true
                 }
+            }else if(condicionActual==false){
+                condicionCumple=false
+                break;
             }
 
             console.log("char actual es: '" + charActual + "' condicion " + condicionCumple)
             /// AL menos uno o todos
 
             condicionCumple = condicionCumple && condicionActual
+
+            
 
         }
 
@@ -236,15 +241,19 @@ validarNombreO_Apellido = function (cadenaNombreApellido) {
     
     let valorNombre_local=recuperarTexto("txtNombre");//lblErrorNombre
     let valorApellido_local=recuperarTexto("txtApellido")//lblErrorApellido
+    let nombreComponenteError;
 
-    if(cadenaNombreApellido=valorNombre_local){
-        mostrarTexto("lblErrorNombre", mensajeErrorCadena)
-    }
-    if(cadenaNombreApellido=valorApellido_local){
-        mostrarTexto("lblErrorApellido", mensajeErrorCadena)
+    if(cadenaNombreApellido===valorNombre_local){
+        nombreComponenteError="lblErrorNombre"
+    }else if(cadenaNombreApellido===valorApellido_local){
+        nombreComponenteError="lblErrorApellido"
+    }else {
+        mensajeErrorCadena="otro error"
     }
 
     console.log("\nCONDICION GENERAL DE CADENA "+ cadenaNombreApellido +" ES: "+condicionCumple+"\n")
+
+    mostrarTexto(nombreComponenteError,mensajeErrorCadena)
 
 
     return condicionCumple
@@ -278,11 +287,6 @@ guardar=function(){
     let valorApellido=recuperarTexto("txtApellido")//lblErrorApellido
     let valorSueldo=recuperarFloat("txtSueldo")//lblErrorSueldo
 
-
-    ///error en cadena nombre
-
-
-    //error en cadena apellido
 
     
     if(validarCedula(valorCedula) &  validarNombreO_Apellido(valorNombre) & validarNombreO_Apellido(valorApellido) & validarFloat(valorSueldo) ){
