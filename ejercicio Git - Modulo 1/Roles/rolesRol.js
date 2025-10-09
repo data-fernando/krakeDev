@@ -61,7 +61,7 @@ calcularRol=function(){
         alert("descuento fuera de rango , ser valor entre 0 y "+valorSueldo)
     )
 
-    mostrarTexto("infoIESS",aporteIEES)
+    mostrarTexto("infoIESS",aporteIEES.toFixed(2))
     mostrarTexto("infoPago",totalPagar.toFixed(2))
 
 
@@ -162,6 +162,30 @@ guardarRol=function(){
     }
 
     mostrarRoles()
+
+}
+
+mostrarTotales=function(){
+
+     let totalEmpleado=0
+     let totalEmpleador=0
+     let totalAPagar=0
+
+    for (let i = 0; i < roles.length; i++) {
+        let totalEmpleadoActual=roles[i].aporteEmpleado
+        let totalEmpleadorActual=roles[i].aporteEmpleador
+        let totalAPagarActual=roles[i].valorAPagar
+
+        totalAPagar+=totalAPagarActual
+        totalEmpleado+=totalEmpleadoActual
+        totalEmpleador+=totalEmpleadorActual
+    
+    }
+    
+    mostrarTexto("infoTotalPago",totalAPagar)
+    mostrarTexto("infoAporteEmpresa",totalEmpleador)
+    mostrarTexto("infoAporteEmpleado",totalEmpleador)
+
 
 }
 

@@ -36,6 +36,10 @@ mostrarOpcionResumen = function () {
     mostrarComponente("divResumen")
     ocultarComponente("divEmpleado")
     ocultarComponente("divRol")
+    
+    //parte 6
+    mostrarRoles()
+    mostrarTotales()
 }
 
 //PARTE 2 
