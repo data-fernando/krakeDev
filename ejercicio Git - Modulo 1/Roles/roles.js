@@ -28,6 +28,8 @@ mostrarOpcionRol = function () {
     mostrarComponente("divRol")
     ocultarComponente("divEmpleado")
     ocultarComponente("divResumen")
+    //parte 6
+    deshabilitarComponente("btbGuardarRol")
 }
 
 mostrarOpcionResumen = function () {
@@ -119,6 +121,7 @@ agregarEmpleado = function (empleado) {
 
     // }
 
+    //tampoco deberia regresar nada, pero creo que asi estaba en el documento
     return existeEmpleado
 
 
