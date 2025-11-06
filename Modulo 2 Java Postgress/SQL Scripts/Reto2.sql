@@ -5,9 +5,8 @@ create table
         nombre varchar(50) not null,
         descripcion varchar(200),
         precio money not null,
-        stock int not null,
-        CHECK (precio >= 0),
-        CHECK (stock >= 0)
+        stock int not null
+     
     );
 
 
@@ -23,7 +22,7 @@ create table
 
 --script 3
 create table
-    estudiante(
+    estudiantes(
         cedula char(10) not null primary key,
         nombre varchar(50) not null,
         apellido varchar(50) not null,
@@ -45,7 +44,7 @@ create table
 --script 5
 create table
     videojuegos(
-        codigo int not null primary,
+        codigo int not null primary key,
         nombre varchar(100) not null,
         descripcion varchar(300) ,
         valoracion int not null
@@ -56,12 +55,12 @@ create table
 --script 6
 create table
     transacciones(
-        codigo int not null primary,
+        codigo int not null primary key,
         numero_cuenta varchar(5) not null,
         monto money not null,
-        tipo: char(1) not null,
-        fecha:date not null,
-        hora: time not null,
+        tipo char(1) not null,
+        fecha date not null,
+        hora time not null
 
     );
 
