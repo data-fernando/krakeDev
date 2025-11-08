@@ -35,6 +35,14 @@ public class Rectangulo {
 	}
 	
 	
+	// constructor
+	public Rectangulo(int base, int altura) {
+		super();
+		this.base = base;
+		this.altura = altura;
+	}
+	
+	
 	
 	
 	

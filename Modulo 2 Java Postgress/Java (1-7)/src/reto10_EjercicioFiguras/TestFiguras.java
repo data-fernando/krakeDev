@@ -3,15 +3,17 @@ package reto10_EjercicioFiguras;
 public class TestFiguras {
 
 	public static void main(String[] args) {
-
-		Rectangulo rect= new Rectangulo();
 		
-		Cuadrado cuadr=new Cuadrado();
+		//lamar al constructor de cada una
 		
-		rect.setAltura(10);
-		rect.setBase(5);
+		Rectangulo rect= new Rectangulo(10,5);
 		
-		cuadr.setLado(40);
+		Cuadrado cuadr=new Cuadrado(6);
+		
+//		rect.setAltura(10);
+//		rect.setBase(5);
+//		
+//		cuadr.setLado(40);
 		
 		
 		System.out.println("\nRectangulo\n");

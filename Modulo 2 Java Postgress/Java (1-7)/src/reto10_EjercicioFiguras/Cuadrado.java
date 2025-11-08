@@ -25,6 +25,16 @@ public class Cuadrado {
 	public void setLado(int lado) {
 		this.lado = lado;
 	}
+
+	
+	
+	//agregar el constructor
+	
+	public Cuadrado(int lado) {
+		super();
+		this.lado = lado;
+	}
+	
 	
 	
 	
