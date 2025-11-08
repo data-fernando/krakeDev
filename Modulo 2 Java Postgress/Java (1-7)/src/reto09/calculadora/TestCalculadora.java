@@ -13,7 +13,7 @@ public class TestCalculadora {
 		System.out.println("Calculadora\n");
 		
 		System.out.println("Multiplicar\n");
-		System.out.println("multiplicacion de: "+numero1+" por "+numero2+" es: "+calcu.multiplicar(numero2, numero2)+"\n");
+		System.out.println("multiplicacion de: "+numero1+" por "+numero2+" es: "+calcu.multiplicar(numero1, numero2)+"\n");
 		
 		System.out.println("Dividir\n");
 		System.out.println("division de: "+numero1+" por "+numero2+" es: "+calcu.dividir(numero1, numero2)+"\n");
