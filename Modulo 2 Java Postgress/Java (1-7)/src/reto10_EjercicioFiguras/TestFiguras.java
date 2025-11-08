@@ -8,16 +8,17 @@ public class TestFiguras {
 		
 		Cuadrado cuadr=new Cuadrado();
 		
-		rect.altura=10;
-		rect.base=5;
+		rect.setAltura(10);
+		rect.setBase(5);
 		
-		cuadr.lado=40;
+		cuadr.setLado(40);
+		
 		
 		System.out.println("\nRectangulo\n");
-		System.out.println("un rectangulo de base: "+rect.base+" y altura: "+rect.altura+" con area : "+rect.calcularArea()+", perimetro  : "+rect.calcularPerimetro());
+		System.out.println("un rectangulo de base: "+rect.getBase()+" y altura: "+rect.getAltura()+" con area : "+rect.calcularArea()+", perimetro  : "+rect.calcularPerimetro());
 		
 		System.out.println("\nCuadrado\n");
-		System.out.println("un cuadrado de lado: "+cuadr.lado+" con area : "+cuadr.calcularArea()+", perimetro  : "+cuadr.calcularPerimetro());
+		System.out.println("un cuadrado de lado: "+cuadr.getLado()+" con area : "+cuadr.calcularArea()+", perimetro  : "+cuadr.calcularPerimetro());
 
 		
 

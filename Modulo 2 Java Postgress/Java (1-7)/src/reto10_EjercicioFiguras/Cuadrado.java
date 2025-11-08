@@ -2,7 +2,7 @@ package reto10_EjercicioFiguras;
 
 public class Cuadrado {
 	
-	int lado;
+	private int lado;
 	
 	
 	
@@ -17,5 +17,17 @@ public class Cuadrado {
 		int resultado=lado*lado;
 		return resultado;
 	}
+
+	public int getLado() {
+		return lado;
+	}
+
+	public void setLado(int lado) {
+		this.lado = lado;
+	}
+	
+	
+	
+	
 
 }

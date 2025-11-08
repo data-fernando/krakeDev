@@ -1,8 +1,8 @@
 package reto10_EjercicioFiguras;
 
 public class Rectangulo {
-	int base;
-	int altura;
+	private int base;
+	private int altura;
 	
 	
 	
@@ -17,6 +17,24 @@ public class Rectangulo {
 		return resultado;
 		
 	}
+
+	public int getBase() {
+		return base;
+	}
+
+	public void setBase(int base) {
+		this.base = base;
+	}
+
+	public int getAltura() {
+		return altura;
+	}
+
+	public void setAltura(int altura) {
+		this.altura = altura;
+	}
+	
+	
 	
 	
 	

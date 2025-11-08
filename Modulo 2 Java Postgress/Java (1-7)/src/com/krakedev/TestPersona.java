@@ -5,31 +5,27 @@ public class TestPersona {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Persona p;
-		p=new Persona();
-		p.nombre="Francisco";
-		p.edadPersona=15;
-		p.estatura=1.68;
-		
-		
-		
+		Persona p = new Persona();
+		p.setNombre("Francisco");
+		p.setEdadPersona(15);
+		p.setEstatura(1.68);
+
 		System.out.println("Hola Mundo");
-		System.out.println("Nombre: "+p.nombre);
-		System.out.println("Edad: "+p.edadPersona);
-		System.out.println("Estatura: "+p.estatura);
-		
+		System.out.println("Nombre: " + p.getNombre());
+		System.out.println("Edad: " + p.getEdadPersona());
+		System.out.println("Estatura: " + p.getEstatura());
+
 		System.out.println("*******\n");
-		
-		///modificar nombre
-		
-		p.nombre="Franciscooo";
-		p.edadPersona=16;
-		p.estatura=1.70;
-		
-		System.out.println("Nombre: "+p.nombre);
-		System.out.println("Edad: "+p.edadPersona);
-		System.out.println("Estatura: "+p.estatura);
-		
+
+		// Modificar atributos
+		p.setNombre("Franciscooo");
+		p.setEdadPersona(16);
+		p.setEstatura(1.70);
+
+		System.out.println("Nombre: " + p.getNombre());
+		System.out.println("Edad: " + p.getEdadPersona());
+		System.out.println("Estatura: " + p.getEstatura());
+
 		
 		
 		
