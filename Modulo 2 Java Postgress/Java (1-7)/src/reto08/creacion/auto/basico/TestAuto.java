@@ -1,4 +1,4 @@
-package reto8.creacion.auto.basico;
+package reto08.creacion.auto.basico;
 
 public class TestAuto {
 
