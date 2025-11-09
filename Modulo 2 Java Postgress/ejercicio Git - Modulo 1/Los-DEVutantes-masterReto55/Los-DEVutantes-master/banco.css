@@ -1,0 +1,274 @@
+/* Paleta de Colores:
+   - Fondo principal: Blanco muy suave
+   - Fondo general: Gris claro
+   - Color de acento (Primario): Un azul/cian moderno (p.ej., #007bff o un azul más corporativo)
+   - Texto: Gris oscuro
+   - Bordes/Separadores: Gris muy suave
+*/
+
+:root {
+    --color-fondo-principal: #f8f9fa; /* Gris muy claro, casi blanco */
+    --color-fondo-menu: #ffffff;      /* Blanco puro para el menú */
+    --color-primario: #007bff;        /* Azul de acento */
+    --color-texto: #343a40;           /* Gris oscuro para el texto */
+    --color-borde: #dee2e6;           /* Gris para bordes y separadores */
+    --color-exito: #28a745;           /* Verde para éxito/depósito */
+    --color-peligro: #dc3545;         /* Rojo para peligro/retiro */
+    --sombra-suave: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--color-fondo-principal);
+    color: var(--color-texto);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* --- Estructura Principal --- */
+
+.principal {
+    display: flex;
+    max-width: 1200px;
+    margin: 40px auto; /* Centrar y darle espacio */
+    border-radius: 10px;
+    overflow: hidden; /* Para que los bordes redondeados se vean bien */
+    box-shadow: var(--sombra-suave);
+    background-color: var(--color-fondo-menu); /* El contenido tendrá su propio fondo */
+    min-height: 700px; /* Altura mínima para que se vea bien */
+}
+
+/* --- Menú Lateral --- */
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 220px; /* Ancho fijo para el menú */
+    background-color: var(--color-fondo-menu);
+    padding: 20px 0;
+    border-right: 1px solid var(--color-borde);
+    box-sizing: border-box;
+}
+
+.contenedorLogo {
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+.contenedorLogo img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.contenedorBotones {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espacio entre botones */
+    padding: 0 20px;
+    flex-grow: 1; /* Para que ocupe el espacio restante */
+}
+
+.boton {
+    background-color: transparent;
+    border: none;
+    color: var(--color-texto);
+    padding: 12px 15px;
+    text-align: left;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    border-radius: 5px;
+}
+
+.boton:hover, .boton:focus {
+    background-color: var(--color-primario);
+    color: #ffffff;
+    outline: none;
+}
+/* Se asume que en JS se podría agregar una clase 'activo' al botón */
+/* .boton.activo {
+    background-color: var(--color-primario);
+    color: #ffffff;
+} */
+
+.contenedorInfoGrupo {
+    padding: 20px;
+    font-size: 0.8em;
+    color: #6c757d;
+    border-top: 1px solid var(--color-borde);
+    margin-top: auto; /* Empuja el grupo al final */
+}
+
+/* --- Contenido Principal --- */
+
+.contenido {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 30px;
+    background-color: var(--color-fondo-principal);
+}
+
+.titulo {
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: var(--color-primario);
+    text-align: center;
+    border-bottom: 2px solid var(--color-borde);
+    padding-bottom: 10px;
+}
+
+.superior {
+    display: flex;
+    flex-direction: column;
+    /* Reducir el flex-grow para que no ocupe tanto espacio sin contenido */
+    flex: 0 0 auto; 
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.inferior {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Ocupa el resto del espacio */
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Controles de Formulario y Acciones --- */
+
+.contenedorTexto {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.etiquetaTexto {
+    flex: 0 0 150px; /* Ancho fijo para etiquetas */
+    text-align: right;
+    margin-right: 20px;
+    font-weight: 500;
+}
+
+.cajaTexto {
+    flex: 1;
+    max-width: 300px;
+}
+
+.caja {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--color-borde);
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.caja:focus {
+    border-color: var(--color-primario);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.errorMensaje {
+    color: var(--color-peligro);
+    font-size: 0.85em;
+    margin-top: 5px;
+}
+
+.contenedorAcciones {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.contenedorAcciones input[type="button"] {
+    background-color: var(--color-primario);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.contenedorAcciones input[type="button"]:hover {
+    background-color: #0056b3; /* Un azul más oscuro al pasar el ratón */
+    transform: translateY(-1px);
+}
+
+/* --- Tablas (Cuentas, Transacciones, Movimientos) --- */
+
+#tabla, #tablaCuentas table, #tablaMovimientos table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#tablaCuentas table, #tablaMovimientos table {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilo para la tabla de búsqueda de cuenta (#tabla) en Transacciones */
+#tabla table {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+#tabla th {
+    background-color: #e9ecef;
+    text-align: right;
+    padding: 8px 15px;
+    width: 30%;
+}
+#tabla td {
+    background-color: #f8f9fa;
+    text-align: left;
+    padding: 8px 15px;
+    font-weight: 600;
+}
+#tabla tr:last-child th, #tabla tr:last-child td {
+    border-bottom: 2px solid var(--color-primario);
+}
+
+
+/* Estilos para las tablas de listados (Cuentas y Movimientos) */
+#tablaCuentas th, #tablaMovimientos th {
+    background-color: var(--color-primario);
+    color: white;
+    padding: 10px;
+    text-align: left;
+    font-weight: 600;
+}
+
+#tablaCuentas td, #tablaMovimientos td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--color-borde);
+    text-align: left;
+}
+
+#tablaCuentas tr:nth-child(even), #tablaMovimientos tr:nth-child(even) {
+    background-color: #f2f2f2; /* Cebra */
+}
+
+#tablaCuentas tr:hover, #tablaMovimientos tr:hover {
+    background-color: #e9ecef;
+    cursor: default;
+}

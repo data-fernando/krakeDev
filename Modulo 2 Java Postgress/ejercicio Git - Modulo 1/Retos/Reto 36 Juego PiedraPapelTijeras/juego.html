@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego</title>
+    <link rel="stylesheet" href="juego.css">
+    <script src="juego.js"></script>
+    <script src="utilitarios.js"></script>
+</head>
+<body>
+
+    <h1>Juega Piedra Papel Tijeras</h1>
+    <h2>Selecciona tu opcion:</h2>
+
+    <div class="contenedor">
+    <img src="imagenes/papel.png" alt="" srcset="" class="imagenSeleccion" onclick="jugar('papel')"/>
+    <img src="imagenes/tijera.png" alt="" srcset="" class="imagenSeleccion" onclick="jugar('tijera')" />
+    <img src="imagenes/piedra.png" alt="" srcset="" class="imagenSeleccion" onclick="jugar('piedra')"/>
+    </div>
+    <h3>Tu Seleccion:</h3>
+    <h4 id="lblSeleccionJugador"></h4>
+    <br>
+     <h2>Seleccion PC:</h2>
+     <img src="imagenes/pc.png" alt="" srcset="" id="imgPC" width="300px">
+
+     <h1> RESULTADO Ronda:</h1>
+     <h2 id="lblResultado"></h2>
+
+     <div class="puntajeArea">
+        <h3>jugador puntaje:</h3>
+        <div class="puntaje" id="lblPuntajeJugador"></div>
+        <h3>empates:</h3>
+        <div class="puntaje" id="lblPuntajeEmpate"></div>
+         <h3>pc puntaje:</h3>
+        <div class="puntaje" id="lblPuntajePC"></div>
+     </div>
+
+     <input type="button" onclick="limpiar()" value="LIMPIAR"></input>
+
+</body>
+</html>
