@@ -162,6 +162,7 @@ foreign key (cedula) references empleado(codigo)
 
 ---Personas Prestamo
 
+
 create table prestamo(
     cedula char(10) primary key not null, --debe ser del mismo tipo que la referencia
     monto money,
@@ -169,6 +170,7 @@ create table prestamo(
     hora_prestamo time,
     garante varchar(40),
 
+    --TRANSACCION
     constraint prestamo_persona_fk
     foreign key (cedula) references personas(cedula)
 
