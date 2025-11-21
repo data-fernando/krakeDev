@@ -1,5 +1,6 @@
 package persistencia.servicios;
 
+import java.math.BigDecimal;
 import java.sql.Connection; //coneccionSQL
 //import java.sql.Date;
 
@@ -8,9 +9,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-
+import persistencia.entidades.EstadoCivil;
 import persistencia.entidades.Persona;
 import persistencia.utils.ConexionBDD;
 
@@ -184,7 +187,198 @@ public class AdminPersonas {
 	        }
 	    }
 	}
+	
+	
+	//consulta BDD
+	public static ArrayList<Persona> buscarPerX_NombreBDD(String nombreA_Buscar) throws Exception {
+			ArrayList<Persona> personas=new ArrayList<Persona>();
+			
+			Connection coneccionUso = null;
+		    PreparedStatement ps = null;
+		    ResultSet rs=null;
+		    
+			
+		    try {
+		    	coneccionUso = ConexionBDD.conectar();
+		    	ps=coneccionUso.prepareStatement(
+		    			"select * from persona where nombre like ?"
+		    			);
+		    	
+		    	ps.setString(1, "%"+nombreA_Buscar+"%");
+		    	rs=ps.executeQuery();
+		    	
+//		    	if(rs.next()) {
+//		    		//// ejecutar este if si se consulta con clave primaria
+//		    	}
+		    	
+		    	while(rs.next()) {
+		    		String nombre =rs.getString("nombre");
+		    		int cedula=rs.getInt("codigo");
+		    		Persona p=new Persona();
+		    		p.setCedula(cedula);
+		    		p.setNombre(nombre);
+		    		personas.add(p);
+		    	}
+		    	
+		    	
+		    }catch  (Exception e)  {
+		    	
+		        LOGGER.error("error al consultar Personas", e.getMessage());
+		        throw new Exception("error al consultar Personas");
+		    	
+		    	
+		    }finally {
+		    	
+		    	try {
+		            if (coneccionUso != null) {
+		                coneccionUso.close();
+		                LOGGER.info("desconectado correctamente");
+		            }
+		        } catch (SQLException e) {
+		            LOGGER.error("error al cerrar la conexión en la consulta", e);
+		            throw new Exception("error al cerrar la conexión en la consulta");
+		        }
+				
+			}
+		    
+			
+			return personas;
+			
+	}
+	
+	
+	public static ArrayList<Persona> buscarMenores_EdadBDD(int edad_buscar) throws Exception {
+		ArrayList<Persona> personas=new ArrayList<Persona>();
+		
+		Connection coneccionUso = null;
+	    PreparedStatement ps = null;
+	    ResultSet rs=null;
+	    
+		
+	    try {
+	    	coneccionUso = ConexionBDD.conectar();
+	    	ps=coneccionUso.prepareStatement(
+	    			"select * from persona where edad < ?"
+	    			);
+	    	
+	    	ps.setInt(1, edad_buscar);
+	    	rs=ps.executeQuery();
+	    	
+//	    	if(rs.next()) {
+//	    		//// ejecutar este if si se consulta con clave primaria
+//	    	}
+	    	
+	    	while(rs.next()) {
+	    		//recuperar nombres de las columnas
+	    		String nombre =rs.getString("nombre");
+	    		int edad=rs.getInt("edad");
+	    		int cedula=rs.getInt("codigo");
+	    		String apellido =rs.getString("apellido");
+	    		
+	    		
+	    		Persona p=new Persona();
+	    		p.setCedula(cedula);
+	    		p.setNombre(nombre);
+	    		p.setApellido(apellido);
+	    		p.setEdad(edad);
+	    		personas.add(p);
+	    	}
+	    	
+	    	
+	    }catch  (Exception e)  {
+	    	
+	        LOGGER.error("error al consultar Personas por edad", e.getMessage());
+	        throw new Exception("error al consultar Personas");
+	    	
+	    	
+	    }finally {
+	    	
+	    	try {
+	            if (coneccionUso != null) {
+	                coneccionUso.close();
+	                LOGGER.info("desconectado correctamente");
+	            }
+	        } catch (SQLException e) {
+	            LOGGER.error("error al cerrar la conexión en la consulta", e);
+	            throw new Exception("error al cerrar la conexión en la consulta");
+	        }
+			
+		}
+	    
+		
+		return personas;
+		
+}
 
+	
+	public static Persona buscarX_PrimaryKey(int codigo_persona) throws Exception {
+		Persona persona_encontrada=new Persona();
+		
+		Connection coneccionUso = null;
+	    PreparedStatement ps = null;
+	    ResultSet rs=null;
+	    
+	    try {
+	    	coneccionUso = ConexionBDD.conectar();
+	    	ps=coneccionUso.prepareStatement(
+	    			"select * from persona where codigo = ?;"
+	    			);
+	    	
+	    	ps.setInt(1, codigo_persona);
+	    	rs=ps.executeQuery();
+	    	
+	    	LOGGER.info("antes de rs next");
+	    	
+	    	if(rs.next()) {
+	    		//manejar tipo money de la base de datos
+	    		//Seria crear una libreria para convertir money a big int
+	    		
+		    		String ahorrosStr = rs.getString("ahorros"); // devuelve "0,00 €"
+		    		// limpiar el formato local
+		    		ahorrosStr = ahorrosStr.replace("€", "").replace(",", ".").trim();
+		    		BigDecimal ahorros_valido = new BigDecimal(ahorrosStr);
+		    	persona_encontrada.setAhorros(ahorros_valido);
+
+	    		
+	    		persona_encontrada.setApellido(rs.getString("apellido"));
+	    		persona_encontrada.setCedula(rs.getInt("codigo"));
+	    		persona_encontrada.setEdad(rs.getInt("edad"));
+	    		persona_encontrada.setEstadoCivil(new EstadoCivil(rs.getString("estado_cv"),null));
+	    		persona_encontrada.setEstatura(rs.getDouble("estatura"));
+	    		persona_encontrada.setFecha_nacimiento(null);
+	    		persona_encontrada.setNombre(rs.getString("nombre"));
+	    		persona_encontrada.setHora_registro(null);
+	    		
+	    	}
+	    	
+	    	LOGGER.info("consulta por Primary key exitosa");
+	    	
+	    	
+	    }catch  (Exception e)  {
+	    	e.printStackTrace();
+	        LOGGER.error("\nerror al consultar Persona por primarykey", e.getMessage()+"\n");
+	
+	        throw new Exception("error al consultar Persona por primarykey");
+	    	
+	    	
+	    }finally {
+	    	
+	    	try {
+	            if (coneccionUso != null) {
+	                coneccionUso.close();
+	                LOGGER.info("desconectado correctamente");
+	            }
+	        } catch (SQLException e) {
+	            LOGGER.error("error al cerrar la conexión en la consulta", e);
+	            throw new Exception("error al cerrar la conexión en la consulta");
+	        }
+			
+		}
+	    
+		
+		return persona_encontrada;
+		
+}
 	
 	
 	

@@ -119,6 +119,14 @@ public class Persona {
 	public Persona() {
 		super();
 	}
+
+	@Override
+	public String toString() {
+		return "\nid: "+cedula+"nombre=" + nombre + ", apellido=" + apellido + ", edad=" + edad + ", estatura=" + estatura
+				+ ", estadoCivil=" + estadoCivil + ", ahorros=" + ahorros + ", fecha_nacimiento=" + fecha_nacimiento
+				+ ", hora_registro=" + hora_registro + "\n";
+	}
+	
 	
 	
 	
