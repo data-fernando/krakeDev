@@ -1,0 +1,37 @@
+////
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+         https://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+////
+
+[#release-notes-2-25-2]
+== 2.25.2
+
+Release date:: 2025-09-18
+
+This patch release addresses certain minor issues detailed in the changelog.
+
+
+[#release-notes-2-25-2-fixed]
+=== Fixed
+
+* Fix potential memory leak involving `LogBuilder` in Log4j API to Logback bridge (https://github.com/apache/logging-log4j2/issues/3819[3819], https://github.com/apache/logging-log4j2/pull/3824[3824])
+* Prevent unnecessary warnings in `AbstractDriverManagerConnectionSource` (https://github.com/apache/logging-log4j2/issues/3828[3828], https://github.com/apache/logging-log4j2/pull/3831[3831])
+* Fix missing newlines in default logging configuration for `log4j-core` (https://github.com/apache/logging-log4j2/issues/3835[3835], https://github.com/apache/logging-log4j2/pull/3851[3851])
+* Fix missing default `Target` value in Console Appender (https://github.com/apache/logging-log4j2/pull/3852[3852])
+* Discard the sub-second part while obtaining the initial time (i.e., creation time) of a file in `RollingFileManager` (https://github.com/apache/logging-log4j2/issues/3068[3068], https://github.com/apache/logging-log4j2/pull/3872[3872])
+* Fix Pattern Layout exception stack trace converters to no longer prepend newlines based on context (https://github.com/apache/logging-log4j2/issues/3873[3873], https://github.com/apache/logging-log4j2/pull/3919[3919])
+* Fix the `com.google.errorprone:error_prone_annotations` dependency whose version property gets erased due to flattening (https://github.com/apache/logging-log4j2/issues/3779[3779], https://github.com/apache/logging-log4j2/pull/3785[3785], https://github.com/apache/logging-log4j2/issues/3822[3822], https://github.com/apache/logging-log4j2/pull/3905[3905])
+* Fix detection of `Throwable` converters inside nested Pattern Layout patterns when applying `alwaysWriteExceptions` (https://github.com/apache/logging-log4j2/pull/3920[3920])
+* Fix parsing and merging of literals in `InstantPatternDynamicFormatter` (https://github.com/apache/logging-log4j2/issues/3930[3930], https://github.com/apache/logging-log4j2/pull/3932[3932])
